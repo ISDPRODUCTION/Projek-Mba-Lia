@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Indeks Kepuasan Masyarakat (IKM)</title>
+    <title>Dashboard Admin - Indeks Kepuasan Masyarakat</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-sm sm:text-base leading-tight">PERUMDA AIR MINUM TIRTA LESTARI KABUPATEN TUBAN</h1>
-                    <p class="text-xs text-sky-100">Dashboard Admin IKM - Cabang I Merakurak</p>
+                    <p class="text-xs text-sky-100">Dashboard Admin SKM</p>
                 </div>
             </div>
             <div class="flex items-center gap-4">
@@ -144,6 +144,7 @@
                         <tr class="bg-slate-100 text-slate-700 uppercase font-semibold">
                             <th class="p-3">No</th>
                             <th class="p-3">Tanggal</th>
+                            <th class="p-3">Cabang</th>
                             <th class="p-3">L/P</th>
                             <th class="p-3">Usia</th>
                             <th class="p-3">Pendidikan</th>
@@ -166,7 +167,7 @@
     <footer class="bg-slate-900 text-white text-center py-6 text-xs mt-12">
         <div class="max-w-7xl mx-auto px-4 space-y-1">
             <p class="font-medium">PERUMDA Air Minum Tirta Lestari Kabupaten Tuban</p>
-            <p class="text-slate-400">Unit Layanan Cabang I Merakurak &copy; 2026. All rights reserved.</p>
+            <p class="text-slate-400">&copy; 2026. All rights reserved.</p>
         </div>
     </footer>
 
@@ -188,15 +189,15 @@
             if (data.length === 0) {
                 data = [
                     {
-                        tanggal_survei: '2026-10-15', jenis_kelamin: 'L', usia: 35, pendidikan: 'S1', pekerjaan: 'PNS', pekerjaan_lainnya: '', jenis_layanan: 'Pasang Baru',
+                        tanggal_survei: '2026-10-15', kantor_cabang: 'Merakurak', jenis_kelamin: 'L', usia: 35, pendidikan: 'S1', pekerjaan: 'PNS', pekerjaan_lainnya: '', jenis_layanan: 'Pasang Baru',
                         u1: 4, u2: 4, u3: 3, u4: 4, u5: 4, u6: 4, u7: 4, u8: 3, u9: 4, saran: 'Pelayanan sangat cepat dan ramah, pertahankan.', created_at: '2026-10-15'
                     },
                     {
-                        tanggal_survei: '2026-10-16', jenis_kelamin: 'P', usia: 28, pendidikan: 'SMA', pekerjaan: 'WIRAUSAHA', pekerjaan_lainnya: '', jenis_layanan: 'Kas dan Penagihan',
+                        tanggal_survei: '2026-10-16', kantor_cabang: 'Tuban', jenis_kelamin: 'P', usia: 28, pendidikan: 'SMA', pekerjaan: 'WIRAUSAHA', pekerjaan_lainnya: '', jenis_layanan: 'Kas dan Penagihan',
                         u1: 3, u2: 4, u3: 4, u4: 3, u5: 4, u6: 3, u7: 4, u8: 4, u9: 4, saran: 'Mohon loket pembayaran ditambah agar antrean lebih singkat.', created_at: '2026-10-16'
                     },
                     {
-                        tanggal_survei: '2026-10-17', jenis_kelamin: 'L', usia: 42, pendidikan: 'D1/D2/D3', pekerjaan: 'SWASTA', pekerjaan_lainnya: '', jenis_layanan: 'Laporan Pengaduan',
+                        tanggal_survei: '2026-10-17', kantor_cabang: 'Semanding', jenis_kelamin: 'L', usia: 42, pendidikan: 'D1/D2/D3', pekerjaan: 'SWASTA', pekerjaan_lainnya: '', jenis_layanan: 'Laporan Pengaduan',
                         u1: 4, u2: 3, u3: 4, u4: 4, u5: 3, u6: 4, u7: 4, u8: 4, u9: 3, saran: 'Pengaduan air macet ditanggapi dengan baik.', created_at: '2026-10-17'
                     }
                 ];
@@ -220,7 +221,7 @@
             if (total === 0) {
                 document.getElementById('statIKM').innerText = '0,00';
                 document.getElementById('statMutu').innerText = '-';
-                document.getElementById('tableBody').innerHTML = `<tr><td colspan="9" class="p-6 text-center text-slate-400">Belum ada data survei yang masuk.</td></tr>`;
+                document.getElementById('tableBody').innerHTML = `<tr><td colspan="10" class="p-6 text-center text-slate-400">Belum ada data survei yang masuk.</td></tr>`;
                 return;
             }
 
@@ -266,6 +267,7 @@
                     <tr class="hover:bg-slate-50">
                         <td class="p-3 font-medium text-slate-900">${index + 1}</td>
                         <td class="p-3 text-slate-600">${r.tanggal_survei}</td>
+                        <td class="p-3 font-semibold text-slate-800">${r.kantor_cabang || '-'}</td>
                         <td class="p-3 font-semibold">${r.jenis_kelamin}</td>
                         <td class="p-3">${r.usia} th</td>
                         <td class="p-3">${r.pendidikan}</td>
