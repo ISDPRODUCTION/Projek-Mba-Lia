@@ -5,6 +5,7 @@ USE db_ikm_pdam;
 CREATE TABLE IF NOT EXISTS responden (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tanggal_survei DATETIME DEFAULT CURRENT_TIMESTAMP,
+    kantor_cabang VARCHAR(50) NOT NULL,
     jenis_kelamin ENUM('L', 'P') NOT NULL,
     usia INT NOT NULL,
     pendidikan VARCHAR(50) NOT NULL,
@@ -12,6 +13,9 @@ CREATE TABLE IF NOT EXISTS responden (
     pekerjaan_lainnya VARCHAR(150) NULL,
     jenis_layanan VARCHAR(100) NOT NULL
 );
+
+-- Query migrasi jika database sudah pernah di-import sebelumnya:
+-- ALTER TABLE responden ADD COLUMN kantor_cabang VARCHAR(50) NOT NULL AFTER tanggal_survei;
 
 -- Tabel Jawaban 9 Unsur Pelayanan SKM
 CREATE TABLE IF NOT EXISTS jawaban_survei (
@@ -37,5 +41,7 @@ CREATE TABLE IF NOT EXISTS admin (
     password VARCHAR(255) NOT NULL
 );
 
--- Default admin (Username: admin_merakurak, Password: admin123)
-INSERT INTO admin (username, password) VALUES ('admin_merakurak', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi') ON DUPLICATE KEY UPDATE id=id;
+-- Default admin (Username: admin, Password: admin123)
+INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$Y26pOCx4g/I5o2XHWGw9o.yDIl4jJGF9P.cTEeAGWgDetllg9wu66') ON DUPLICATE KEY UPDATE password='$2y$10$Y26pOCx4g/I5o2XHWGw9o.yDIl4jJGF9P.cTEeAGWgDetllg9wu66';
+-- Kompatibilitas akun lama:
+INSERT INTO admin (username, password) VALUES ('admin_merakurak', '$2y$10$Y26pOCx4g/I5o2XHWGw9o.yDIl4jJGF9P.cTEeAGWgDetllg9wu66') ON DUPLICATE KEY UPDATE password='$2y$10$Y26pOCx4g/I5o2XHWGw9o.yDIl4jJGF9P.cTEeAGWgDetllg9wu66';

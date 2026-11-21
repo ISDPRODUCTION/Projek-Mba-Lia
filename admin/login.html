@@ -73,7 +73,7 @@
                 </div>
             </form>
             <div class="text-center text-xs text-slate-400 pt-2">
-                Default: admin_merakurak / admin123
+                Default: admin / admin123
             </div>
         </div>
     </main>
@@ -97,7 +97,7 @@
                yang memverifikasi password_verify() dari tabel admin database MySQL.
                ========================================================================= */
 
-            if (user === 'admin_merakurak' && pass === 'admin123') {
+            if ((user === 'admin' || user === 'admin_merakurak') && pass === 'admin123') {
                 localStorage.setItem('pdam_admin_logged', 'true');
                 window.location.href = 'dashboard.html';
             } else {
